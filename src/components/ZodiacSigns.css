@@ -1,0 +1,146 @@
+.zodiac-signs-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.zodiac-signs-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.zodiac-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.zodiac-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zodiac-sign-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+  position: relative;
+  font-family: inherit;
+  color: inherit;
+}
+
+.zodiac-sign-item:hover {
+  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.zodiac-sign-item.selected {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.zodiac-sign-item.current {
+  border-left: 4px solid #ffd700;
+}
+
+.sign-emoji {
+  font-size: 2.5rem;
+  min-width: 50px;
+  text-align: center;
+}
+
+.sign-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sign-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sign-element {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.sign-dates {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
+.current-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ffd700;
+  font-size: 0.8rem;
+}
+
+/* Custom scrollbar */
+.zodiac-signs-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.zodiac-signs-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.zodiac-signs-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.zodiac-signs-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 1024px) {
+  .zodiac-signs-card {
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .zodiac-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .zodiac-sign-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .sign-info {
+    align-items: center;
+  }
+}
+
