@@ -1,6 +1,7 @@
 import React from 'react'
 import './SkyInformation.css'
 import { getMoonPhase, getPlanetaryPositions } from '../utils/astrology'
+import AstrologicalMandala from './AstrologicalMandala'
 
 function SkyInformation({ currentDate }) {
   const moonPhase = getMoonPhase(currentDate)
@@ -11,6 +12,11 @@ function SkyInformation({ currentDate }) {
       <h2>🌌 Sky Information</h2>
       
       <div className="info-section">
+        <div className="mandala-section">
+          <h3>🌀 Cosmic Mandala</h3>
+          <AstrologicalMandala currentDate={currentDate} />
+        </div>
+
         <div className="moon-phase">
           <h3>🌙 Moon Phase</h3>
           <div className="moon-display">

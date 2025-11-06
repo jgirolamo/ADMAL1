@@ -25,6 +25,17 @@
   opacity: 0.95;
 }
 
+.mandala-section {
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.mandala-section h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .moon-phase {
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);

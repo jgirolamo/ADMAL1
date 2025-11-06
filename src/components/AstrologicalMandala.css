@@ -1,0 +1,257 @@
+.mandala-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  margin: 30px 0;
+}
+
+.mandala-wrapper {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mandala-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Decorative circles */
+.mandala-circle {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.circle-1 {
+  width: 360px;
+  height: 360px;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 280px;
+  height: 280px;
+  animation-delay: 1.3s;
+}
+
+.circle-3 {
+  width: 200px;
+  height: 200px;
+  animation-delay: 2.6s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* Zodiac Ring */
+.zodiac-ring {
+  position: relative;
+}
+
+.zodiac-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.zodiac-point.active {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+  }
+}
+
+.zodiac-symbol {
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.15);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.zodiac-point:hover .zodiac-symbol {
+  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.zodiac-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+/* Planet Ring */
+.planet-ring {
+  position: relative;
+}
+
+.planet-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.planet-point:hover {
+  transform: scale(1.15);
+  z-index: 5;
+}
+
+.planet-symbol {
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.planet-point:hover .planet-symbol {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.planet-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-align: center;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+/* Center */
+.mandala-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.center-sun {
+  font-size: 4rem;
+  animation: rotate 20s linear infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.center-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.9;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .mandala-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .circle-1 {
+    width: 270px;
+    height: 270px;
+  }
+  
+  .circle-2 {
+    width: 210px;
+    height: 210px;
+  }
+  
+  .circle-3 {
+    width: 150px;
+    height: 150px;
+  }
+  
+  
+  .zodiac-symbol {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .planet-symbol {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+  
+  .center-sun {
+    font-size: 3rem;
+  }
+  
+  .zodiac-label,
+  .planet-label {
+    font-size: 0.6rem;
+  }
+}
+
