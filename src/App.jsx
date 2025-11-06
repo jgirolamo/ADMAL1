@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>✨ Astrological Messages & Sky Information ✨</h1>
+        <h1>✨ Astro Diary ✨</h1>
         <p className="subtitle">Discover the cosmic wisdom of the universe</p>
       </header>
 
