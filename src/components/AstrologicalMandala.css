@@ -75,7 +75,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 3px;
   transition: all 0.3s ease;
 }
 
@@ -94,17 +94,18 @@
 
 .zodiac-symbol {
   font-size: 2rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   width: 50px;
   height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  border: 2px solid rgba(255, 215, 0, 0.4);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  margin-bottom: 2px;
 }
 
 .zodiac-point:hover .zodiac-symbol {
@@ -118,34 +119,41 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  margin-top: 3px;
+  gap: 1px;
+  margin-top: 2px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 3px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(5px);
 }
 
 .detail-line {
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   text-align: center;
   white-space: nowrap;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .detail-degree {
   font-weight: 700;
   color: #ffd700;
-  opacity: 0.95;
-  font-size: 0.65rem;
+  opacity: 1;
+  font-size: 0.55rem;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
 
 .detail-name {
   font-weight: 600;
-  opacity: 0.9;
-  font-size: 0.6rem;
+  opacity: 0.95;
+  font-size: 0.5rem;
+  color: #e0e0e0;
 }
 
 .detail-element {
   font-weight: 500;
-  opacity: 0.75;
-  font-size: 0.55rem;
+  opacity: 0.7;
+  font-size: 0.45rem;
   color: #b8b8b8;
 }
 
@@ -170,7 +178,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -182,7 +190,7 @@
 
 .planet-symbol {
   font-size: 1.5rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -193,6 +201,7 @@
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  margin-bottom: 2px;
 }
 
 .planet-point:hover .planet-symbol {
@@ -205,8 +214,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  margin-top: 3px;
+  gap: 1px;
+  margin-top: 2px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 3px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(5px);
 }
 
 .planet-label {
@@ -219,8 +233,8 @@
 
 .detail-sign {
   font-weight: 500;
-  opacity: 0.75;
-  font-size: 0.55rem;
+  opacity: 0.7;
+  font-size: 0.45rem;
   color: #b8b8b8;
 }
 
@@ -309,21 +323,27 @@
     font-size: 0.6rem;
   }
   
+  .zodiac-details,
+  .planet-details {
+    padding: 2px 4px;
+    gap: 0.5px;
+  }
+  
   .detail-line {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
   }
   
   .detail-degree {
-    font-size: 0.55rem;
+    font-size: 0.5rem;
   }
   
   .detail-name {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
   }
   
   .detail-element,
   .detail-sign {
-    font-size: 0.45rem;
+    font-size: 0.4rem;
   }
 }
 
