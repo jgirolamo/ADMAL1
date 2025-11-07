@@ -97,6 +97,7 @@ function AstrologicalMandala({ currentDate }) {
             const angle = getAngle(index)
             const isActive = planetsInSigns.some(p => p.signIndex === index)
             const signDegree = getZodiacDegree(index)
+            const adjustment = getZodiacAdjustment(index)
             return (
               <div
                 key={sign}
@@ -106,7 +107,13 @@ function AstrologicalMandala({ currentDate }) {
                 }}
               >
                 <div className="zodiac-symbol">{ZODIAC_EMOJIS[sign]}</div>
-                <div className="zodiac-details">
+                <div 
+                  className="zodiac-details"
+                  style={{
+                    transform: `translate(${adjustment.offsetX}px, ${adjustment.offsetY}px)`,
+                    zIndex: adjustment.offsetX !== 0 || adjustment.offsetY !== 0 ? 10 : 1
+                  }}
+                >
                   <div className="detail-line detail-degree">{signDegree}°</div>
                   <div className="detail-line detail-name">{sign}</div>
                   <div className="detail-line detail-element">{getElement(sign)}</div>
