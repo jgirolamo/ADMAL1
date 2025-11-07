@@ -49,6 +49,63 @@ function AstrologicalMandala({ currentDate }) {
     angle: getAngle(ZODIAC_SIGNS.indexOf(planet.sign))
   }))
   
+  // Calculate overlap adjustments for zodiac signs
+  const getZodiacAdjustment = (index) => {
+    const angle = getAngle(index)
+    let offsetX = 0
+    let offsetY = 0
+    
+    // Check for nearby planets that might overlap
+    planetsInSigns.forEach(planet => {
+      const angleDiff = Math.abs(angle - planet.angle)
+      const normalizedDiff = Math.min(angleDiff, 360 - angleDiff)
+      
+      // If planet is very close (within 20 degrees), adjust zodiac details
+      if (normalizedDiff < 20 && planet.signIndex === index) {
+        // Offset details to the side
+        offsetX = normalizedDiff < 10 ? (angle < 0 ? -20 : 20) : 0
+        offsetY = normalizedDiff < 10 ? 12 : 0
+      }
+    })
+    
+    return { offsetX, offsetY }
+  }
+  
+  // Calculate overlap adjustments for planets
+  const getPlanetAdjustment = (planet) => {
+    let offsetX = 0
+    let offsetY = 0
+    
+    // Check for nearby planets
+    planetsInSigns.forEach(otherPlanet => {
+      if (otherPlanet.name !== planet.name) {
+        const angleDiff = Math.abs(planet.angle - otherPlanet.angle)
+        const normalizedDiff = Math.min(angleDiff, 360 - angleDiff)
+        
+        // If another planet is very close (within 15 degrees), adjust
+        if (normalizedDiff < 15) {
+          // Alternate offset direction based on planet name hash
+          const hash = planet.name.charCodeAt(0) % 2
+          offsetX = hash === 0 ? -25 : 25
+          offsetY = normalizedDiff < 8 ? 18 : 0
+        }
+      }
+    })
+    
+    // Also check for nearby zodiac signs
+    ZODIAC_SIGNS.forEach((sign, idx) => {
+      const zodiacAngle = getAngle(idx)
+      const angleDiff = Math.abs(planet.angle - zodiacAngle)
+      const normalizedDiff = Math.min(angleDiff, 360 - angleDiff)
+      
+      if (normalizedDiff < 15 && planet.signIndex === idx) {
+        offsetY = normalizedDiff < 8 ? -18 : 0
+      }
+    })
+    
+    return { offsetX, offsetY }
+  }
+  
   // Detect and adjust overlapping planets
   const MIN_ANGLE_DIFF = 15 // Minimum degrees between planets to avoid overlap
   planetsInSigns = planetsInSigns.map((planet, index) => {
@@ -139,7 +196,13 @@ function AstrologicalMandala({ currentDate }) {
                 title={`${planet.name} in ${planet.sign}`}
               >
                 <div className="planet-symbol">{planet.emoji}</div>
-                <div className="planet-details">
+                <div 
+                  className="planet-details"
+                  style={{
+                    transform: `translate(${getPlanetAdjustment(planet).offsetX}px, ${getPlanetAdjustment(planet).offsetY}px)`,
+                    zIndex: getPlanetAdjustment(planet).offsetX !== 0 || getPlanetAdjustment(planet).offsetY !== 0 ? 15 : 1
+                  }}
+                >
                   <div className="detail-line detail-degree">{planet.degree}°</div>
                   <div className="detail-line detail-name">{planet.name}</div>
                   <div className="detail-line detail-sign">{planet.sign}</div>
