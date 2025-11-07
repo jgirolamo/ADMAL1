@@ -42,11 +42,51 @@ function AstrologicalMandala({ currentDate }) {
   }
   
   // Find which sign each planet is in
-  const planetsInSigns = planetaryPositions.map((planet, index) => ({
+  let planetsInSigns = planetaryPositions.map((planet, index) => ({
     ...planet,
     signIndex: ZODIAC_SIGNS.indexOf(planet.sign),
-    degree: getPlanetDegree(index)
+    degree: getPlanetDegree(index),
+    angle: getAngle(ZODIAC_SIGNS.indexOf(planet.sign))
   }))
+  
+  // Detect and adjust overlapping planets
+  const MIN_ANGLE_DIFF = 15 // Minimum degrees between planets to avoid overlap
+  planetsInSigns = planetsInSigns.map((planet, index) => {
+    let adjustedAngle = planet.angle
+    let adjustedRadius = -120 // Base radius for planets
+    
+    // Check for overlaps with other planets
+    for (let i = 0; i < planetsInSigns.length; i++) {
+      if (i === index) continue
+      const otherPlanet = planetsInSigns[i]
+      let angleDiff = Math.abs(adjustedAngle - otherPlanet.angle)
+      if (angleDiff > 180) angleDiff = 360 - angleDiff
+      
+      // If too close, adjust angle slightly
+      if (angleDiff < MIN_ANGLE_DIFF && angleDiff > 0) {
+        // Adjust angle away from the other planet
+        const adjustment = (MIN_ANGLE_DIFF - angleDiff) / 2
+        if (adjustedAngle < otherPlanet.angle) {
+          adjustedAngle -= adjustment
+        } else {
+          adjustedAngle += adjustment
+        }
+        // Normalize angle to 0-360
+        adjustedAngle = ((adjustedAngle % 360) + 360) % 360
+      }
+      
+      // If same sign, adjust radius slightly
+      if (planet.signIndex === otherPlanet.signIndex && i < index) {
+        adjustedRadius -= 5 // Move slightly inward
+      }
+    }
+    
+    return {
+      ...planet,
+      adjustedAngle,
+      adjustedRadius
+    }
+  })
 
   return (
     <div className="mandala-container">
@@ -79,13 +119,15 @@ function AstrologicalMandala({ currentDate }) {
         {/* Middle ring - Planets */}
         <div className="mandala-ring planet-ring">
           {planetsInSigns.map((planet, index) => {
-            const angle = getAngle(planet.signIndex)
+            const angle = planet.adjustedAngle || getAngle(planet.signIndex)
+            const radius = planet.adjustedRadius || -120
             return (
               <div
                 key={planet.name}
                 className="planet-point"
                 style={{
-                  transform: `rotate(${angle}deg) translateY(-120px) rotate(-${angle}deg)`
+                  transform: `rotate(${angle}deg) translateY(${radius}px) rotate(-${angle}deg)`,
+                  zIndex: 10 + index
                 }}
                 title={`${planet.name} in ${planet.sign}`}
               >
