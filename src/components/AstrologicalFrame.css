@@ -1,0 +1,388 @@
+.astrological-frame {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* Top Frame */
+.frame-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.frame-top-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+/* Bottom Frame */
+.frame-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.frame-bottom-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+/* Left Frame */
+.frame-left {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  bottom: 60px;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+}
+
+/* Right Frame */
+.frame-right {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  bottom: 60px;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+}
+
+/* Frame Symbols */
+.frame-symbol {
+  font-size: 1.5rem;
+  color: #ffd700;
+  text-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.8),
+    0 0 20px rgba(255, 215, 0, 0.5),
+    0 0 30px rgba(255, 215, 0, 0.3);
+  animation: symbolPulse 3s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  display: inline-block;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+}
+
+.frame-symbol.vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+@keyframes symbolPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Corner Ornaments */
+.frame-corner {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.corner-ornament {
+  font-size: 2rem;
+  color: #ffd700;
+  text-shadow: 
+    0 0 15px rgba(255, 215, 0, 1),
+    0 0 30px rgba(255, 215, 0, 0.6),
+    0 0 45px rgba(255, 215, 0, 0.3);
+  animation: cornerGlow 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 1));
+}
+
+@keyframes cornerGlow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+/* Decorative Lines */
+.frame-line {
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.3),
+    rgba(255, 215, 0, 0.5),
+    rgba(255, 215, 0, 0.3),
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.frame-line-top {
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.4),
+    rgba(255, 215, 0, 0.6),
+    rgba(255, 215, 0, 0.4),
+    transparent
+  );
+}
+
+.frame-line-bottom {
+  bottom: 60px;
+  left: 60px;
+  right: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.4),
+    rgba(255, 215, 0, 0.6),
+    rgba(255, 215, 0, 0.4),
+    transparent
+  );
+}
+
+.frame-line-left {
+  left: 60px;
+  top: 60px;
+  bottom: 60px;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(255, 215, 0, 0.4),
+    rgba(255, 215, 0, 0.6),
+    rgba(255, 215, 0, 0.4),
+    transparent
+  );
+}
+
+.frame-line-right {
+  right: 60px;
+  top: 60px;
+  bottom: 60px;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(255, 215, 0, 0.4),
+    rgba(255, 215, 0, 0.6),
+    rgba(255, 215, 0, 0.4),
+    transparent
+  );
+}
+
+/* Additional decorative elements */
+.frame-corner::before,
+.frame-corner::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.frame-corner.top-left::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.frame-corner.top-left::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.frame-corner.top-right::before {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.frame-corner.top-right::after {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
+.frame-corner.bottom-left::before {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
+.frame-corner.bottom-left::after {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.frame-corner.bottom-right::before {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.frame-corner.bottom-right::after {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+@media (max-width: 1024px) {
+  .frame-top,
+  .frame-bottom {
+    height: 50px;
+  }
+  
+  .frame-left,
+  .frame-right {
+    width: 50px;
+    top: 50px;
+    bottom: 50px;
+  }
+  
+  .frame-symbol {
+    font-size: 1.2rem;
+  }
+  
+  .corner-ornament {
+    font-size: 1.5rem;
+  }
+  
+  .frame-line-top {
+    top: 50px;
+    left: 50px;
+    right: 50px;
+  }
+  
+  .frame-line-bottom {
+    bottom: 50px;
+    left: 50px;
+    right: 50px;
+  }
+  
+  .frame-line-left {
+    left: 50px;
+    top: 50px;
+    bottom: 50px;
+  }
+  
+  .frame-line-right {
+    right: 50px;
+    top: 50px;
+    bottom: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .frame-top,
+  .frame-bottom {
+    height: 40px;
+    padding: 0 10px;
+  }
+  
+  .frame-left,
+  .frame-right {
+    width: 40px;
+    top: 40px;
+    bottom: 40px;
+    padding: 10px 0;
+  }
+  
+  .frame-symbol {
+    font-size: 1rem;
+  }
+  
+  .corner-ornament {
+    font-size: 1.2rem;
+  }
+  
+  .frame-corner {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .frame-line-top {
+    top: 40px;
+    left: 40px;
+    right: 40px;
+  }
+  
+  .frame-line-bottom {
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+  }
+  
+  .frame-line-left {
+    left: 40px;
+    top: 40px;
+    bottom: 40px;
+  }
+  
+  .frame-line-right {
+    right: 40px;
+    top: 40px;
+    bottom: 40px;
+  }
+  
+  .frame-top-content,
+  .frame-bottom-content {
+    gap: 5px;
+  }
+}
+
