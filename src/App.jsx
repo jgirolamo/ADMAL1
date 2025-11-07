@@ -3,6 +3,7 @@ import './App.css'
 import HoroscopeMessage from './components/HoroscopeMessage'
 import SkyInformation from './components/SkyInformation'
 import ZodiacSigns from './components/ZodiacSigns'
+import SacredGeometryBackground from './components/SacredGeometryBackground'
 import { getCurrentZodiacSign, getMoonPhase } from './utils/astrology'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="app">
+      <SacredGeometryBackground />
       <header className="app-header">
         <h1>✨ Astro Diary ✨</h1>
         <p className="subtitle">Discover the cosmic wisdom of the universe</p>
