@@ -5,95 +5,164 @@
   width: 100%;
   height: 100%;
   z-index: -1;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 30%, #0d1a2d 70%, #0a0a1a 100%);
   overflow: hidden;
-  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
 }
 
-.geometry-pattern {
+/* Stars */
+.stars-container {
   position: absolute;
-  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Shooting stars */
+.shooting-stars-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50%;
+  animation: shoot linear infinite;
+  opacity: 0;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-45deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(300px) translateY(300px) rotate(-45deg);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Nebula clouds */
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
   animation: float 20s ease-in-out infinite;
 }
 
-.flower-of-life {
+.nebula-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(147, 112, 219, 0.15) 0%, transparent 70%);
   top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  animation: rotate 60s linear infinite, float 25s ease-in-out infinite;
+  right: -10%;
+  animation-delay: 0s;
+}
+
+.nebula-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+  bottom: 10%;
+  left: -5%;
+  animation-delay: -7s;
+}
+
+.nebula-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
+  top: 40%;
+  right: 20%;
+  animation-delay: -14s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 30px) scale(0.95); }
+  75% { transform: translate(-30px, -10px) scale(1.02); }
+}
+
+/* Geometry patterns */
+.geometry-pattern {
+  position: absolute;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.flower-of-life {
+  width: 100%;
+  height: 100%;
+  animation: rotateSlowReverse 300s linear infinite;
 }
 
 .metatrons-cube {
+  width: 60%;
+  height: 60%;
   top: 20%;
-  right: -5%;
-  width: 40%;
-  height: 40%;
-  animation: float 30s ease-in-out infinite reverse;
-  animation-delay: -5s;
+  left: 20%;
+  animation: rotateSlow 200s linear infinite;
 }
 
-.hex-grid {
-  bottom: -5%;
+.zodiac-wheel {
+  width: 80%;
+  height: 80%;
+  top: 10%;
   left: 10%;
-  width: 50%;
-  height: 50%;
-  animation: float 35s ease-in-out infinite;
-  animation-delay: -10s;
+  animation: rotateSlowReverse 400s linear infinite;
 }
 
-.spiral {
-  top: 50%;
-  right: 10%;
-  width: 30%;
-  height: 30%;
-  transform: translateY(-50%);
-  animation: rotate 40s linear infinite reverse, float 28s ease-in-out infinite;
-  animation-delay: -15s;
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
+@keyframes rotateSlowReverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Overlay gradient */
 .geometry-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(147, 112, 219, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
   pointer-events: none;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(20px, -20px) scale(1.05);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.95);
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-  .geometry-pattern {
-    opacity: 0.4;
-  }
-  
-  .flower-of-life {
-    width: 150%;
-    height: 150%;
+  .nebula-1, .nebula-2, .nebula-3 {
+    width: 250px;
+    height: 250px;
+    filter: blur(50px);
   }
 }
-
-

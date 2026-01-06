@@ -50,14 +50,46 @@
   color: #e0e0e0;
 }
 
+.sign-traits {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.trait {
+  background: rgba(255, 215, 0, 0.15);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.trait.element {
+  background: rgba(255, 100, 50, 0.15);
+  border-color: rgba(255, 100, 50, 0.3);
+}
+
 .message-footer {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .zodiac-dates {
   font-size: 0.95rem;
   opacity: 0.8;
   font-style: italic;
+  margin: 0;
+}
+
+.lucky-numbers {
+  font-size: 1rem;
+  color: #ffd700;
+  font-weight: 500;
+  margin: 0;
 }
 
 @media (max-width: 768px) {

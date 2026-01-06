@@ -21,7 +21,7 @@ export function getCurrentZodiacSign(date = new Date()) {
 export function getMoonPhase(date = new Date()) {
   // Simplified moon phase calculation based on days since known new moon
   // This is a simplified version - for accuracy, you'd use a proper astronomical library
-  const knownNewMoon = new Date('2024-01-11')
+  const knownNewMoon = new Date('2025-12-30') // Recent new moon for accuracy
   const daysSinceNewMoon = Math.floor((date - knownNewMoon) / (1000 * 60 * 60 * 24))
   const lunarCycle = 29.53 // days in a lunar cycle
   const phase = (daysSinceNewMoon % lunarCycle) / lunarCycle
@@ -77,24 +77,86 @@ export function getMoonPhase(date = new Date()) {
   }
 }
 
-export function getPlanetaryPositions() {
-  // Simplified planetary positions - in a real app, you'd use an astronomical API
-  // This provides a general representation
-  const signs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 
-                 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces']
-  
-  // Generate positions based on current date (simplified)
-  const date = new Date()
+export function getPlanetaryPositions(date = new Date()) {
+  // More accurate planetary positions
+  const sunSign = getCurrentZodiacSign(date)
+  const moonPhase = getMoonPhase(date)
+
+  // Approximate planetary positions (simplified but more realistic)
+  // In reality, each planet has different orbital periods
   const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24)
-  
+  const signs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+                 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces']
+
+  // Mercury orbits faster, stays close to Sun (within 1-2 signs)
+  const mercuryOffset = Math.floor(Math.sin(dayOfYear * 0.1) * 1.5)
+  const sunIndex = signs.indexOf(sunSign)
+  const mercurySign = signs[(sunIndex + mercuryOffset + 12) % 12]
+
+  // Venus also stays close to Sun (within 2 signs)
+  const venusOffset = Math.floor(Math.sin(dayOfYear * 0.05) * 2)
+  const venusSign = signs[(sunIndex + venusOffset + 12) % 12]
+
+  // Mars moves through zodiac in ~2 years
+  const marsSign = signs[Math.floor(dayOfYear / 61) % 12]
+
+  // Jupiter moves through zodiac in ~12 years (1 sign per year)
+  const jupiterSign = signs[(date.getFullYear() + 5) % 12]
+
+  // Saturn moves through zodiac in ~29 years
+  const saturnSign = signs[Math.floor((date.getFullYear() - 2020) / 2.4) % 12]
+
+  // Moon sign changes every ~2.5 days
+  const moonSign = signs[Math.floor(dayOfYear / 2.5) % 12]
+
   return [
-    { name: 'Sun', emoji: '☀️', sign: signs[dayOfYear % 12] },
-    { name: 'Moon', emoji: '🌙', sign: signs[(dayOfYear + 2) % 12] },
-    { name: 'Mercury', emoji: '☿️', sign: signs[(dayOfYear + 1) % 12] },
-    { name: 'Venus', emoji: '♀️', sign: signs[(dayOfYear + 3) % 12] },
-    { name: 'Mars', emoji: '♂️', sign: signs[(dayOfYear + 4) % 12] },
-    { name: 'Jupiter', emoji: '♃', sign: signs[(dayOfYear + 5) % 12] },
-    { name: 'Saturn', emoji: '♄', sign: signs[(dayOfYear + 6) % 12] }
+    { name: 'Sun', emoji: '☀️', sign: sunSign },
+    { name: 'Moon', emoji: '🌙', sign: moonSign },
+    { name: 'Mercury', emoji: '☿️', sign: mercurySign },
+    { name: 'Venus', emoji: '♀️', sign: venusSign },
+    { name: 'Mars', emoji: '♂️', sign: marsSign },
+    { name: 'Jupiter', emoji: '♃', sign: jupiterSign },
+    { name: 'Saturn', emoji: '♄', sign: saturnSign }
   ]
+}
+
+// Get zodiac element
+export function getZodiacElement(sign) {
+  const elements = {
+    'Aries': 'Fire', 'Leo': 'Fire', 'Sagittarius': 'Fire',
+    'Taurus': 'Earth', 'Virgo': 'Earth', 'Capricorn': 'Earth',
+    'Gemini': 'Air', 'Libra': 'Air', 'Aquarius': 'Air',
+    'Cancer': 'Water', 'Scorpio': 'Water', 'Pisces': 'Water'
+  }
+  return elements[sign] || 'Unknown'
+}
+
+// Get zodiac modality
+export function getZodiacModality(sign) {
+  const modalities = {
+    'Aries': 'Cardinal', 'Cancer': 'Cardinal', 'Libra': 'Cardinal', 'Capricorn': 'Cardinal',
+    'Taurus': 'Fixed', 'Leo': 'Fixed', 'Scorpio': 'Fixed', 'Aquarius': 'Fixed',
+    'Gemini': 'Mutable', 'Virgo': 'Mutable', 'Sagittarius': 'Mutable', 'Pisces': 'Mutable'
+  }
+  return modalities[sign] || 'Unknown'
+}
+
+// Get lucky numbers for today
+export function getLuckyNumbers(sign, date = new Date()) {
+  const baseNumbers = {
+    'Aries': [1, 9], 'Taurus': [2, 6], 'Gemini': [3, 5],
+    'Cancer': [2, 7], 'Leo': [1, 4], 'Virgo': [5, 6],
+    'Libra': [6, 9], 'Scorpio': [8, 9], 'Sagittarius': [3, 9],
+    'Capricorn': [4, 8], 'Aquarius': [4, 7], 'Pisces': [3, 7]
+  }
+  const base = baseNumbers[sign] || [1, 7]
+  const dayMod = date.getDate()
+
+  return [
+    base[0],
+    base[1],
+    (base[0] + dayMod) % 49 + 1,
+    (base[1] * dayMod) % 49 + 1
+  ].sort((a, b) => a - b)
 }
 
