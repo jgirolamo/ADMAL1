@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import HoroscopeMessage from './components/HoroscopeMessage'
 import SkyInformation from './components/SkyInformation'
 import ZodiacSigns from './components/ZodiacSigns'
 import SacredGeometryBackground from './components/SacredGeometryBackground'
-import AstrologicalFrame from './components/AstrologicalFrame'
-import { getCurrentZodiacSign, getMoonPhase } from './utils/astrology'
+import { getCurrentZodiacSign } from './utils/astrology'
 
 function App() {
   const [selectedSign, setSelectedSign] = useState(null)
@@ -24,7 +23,6 @@ function App() {
   return (
     <div className="app">
       <SacredGeometryBackground />
-      <AstrologicalFrame />
       <header className="app-header">
         <h1>✨ Astro Diary ✨</h1>
         <p className="subtitle">Discover the cosmic wisdom of the universe</p>

@@ -3,173 +3,76 @@
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sky-info-card h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 25px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .info-section {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
 }
 
 .info-section h3 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-bottom: 15px;
-  opacity: 0.95;
-}
-
-.mandala-section {
-  padding-bottom: 30px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  text-align: center;
-}
-
-.mandala-section h3 {
-  text-align: center;
-  margin-bottom: 20px;
 }
 
 .moon-phase {
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .moon-display {
   display: flex;
   align-items: center;
   gap: 20px;
-  flex-wrap: wrap;
 }
 
 .moon-icon {
-  font-size: 4rem;
-  width: 100px;
-  height: 100px;
+  font-size: 3.5rem;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   border: 2px solid rgba(255, 215, 0, 0.3);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
 }
 
-.moon-details {
-  flex: 1;
-  min-width: 200px;
-}
-
-.phase-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.phase-description {
-  font-size: 1rem;
-  opacity: 0.9;
-  line-height: 1.6;
-}
-
-.planetary-positions {
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
+.moon-details { flex: 1; }
+.phase-name { font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; }
+.phase-description { font-size: 0.95rem; opacity: 0.85; line-height: 1.5; }
 
 .planets-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
 }
 
 .planet-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-}
-
-.planet-item:hover {
-  transform: translateY(-2px);
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
-  border-color: rgba(255, 215, 0, 0.3);
-}
-
-.planet-emoji {
-  font-size: 2rem;
-}
-
-.planet-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.planet-name {
-  font-weight: 600;
-  font-size: 1rem;
-  margin-bottom: 4px;
-}
-
-.planet-sign {
-  font-size: 0.85rem;
-  opacity: 0.8;
-}
-
-.sky-conditions {
-  padding-top: 10px;
-}
-
-.conditions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.condition-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 15px;
+  gap: 10px;
+  padding: 12px;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.condition-label {
-  font-weight: 500;
-  opacity: 0.9;
-}
-
-.condition-value {
-  font-weight: 600;
-  color: #ffd700;
-}
+.planet-emoji { font-size: 1.8rem; }
+.planet-info { display: flex; flex-direction: column; gap: 2px; }
+.planet-name { font-weight: 600; font-size: 0.95rem; }
+.planet-sign { font-size: 0.8rem; opacity: 0.75; }
 
 @media (max-width: 768px) {
-  .sky-info-card h2 {
-    font-size: 1.5rem;
-  }
-  
-  .moon-icon {
-    font-size: 3rem;
-    width: 80px;
-    height: 80px;
-  }
-  
-  .planets-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .sky-info-card h2 { font-size: 1.4rem; }
+  .moon-icon { font-size: 2.5rem; width: 60px; height: 60px; }
+  .planets-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
